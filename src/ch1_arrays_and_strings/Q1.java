@@ -1,10 +1,5 @@
 package ch1_arrays_and_strings;
 
-import java.util.HashMap;
-
-/**
- * Created by cameron on 23/07/15.
- */
 public class Q1 {
     public static boolean hasUniqueChars(String str) {
         // only 128 possible chars assuming ascii
