@@ -19,4 +19,27 @@ public class Q1 {
             n = n.next;
         }
     }
+
+    public static <E> void removeDups2(LinkedList<E> list) {
+        LinkedList.Node current = list.head;
+        LinkedList.Node runner;
+        LinkedList.Node prev;
+
+        while (current != null) {
+            // start at the current node
+            prev = current;
+            runner = current.next;
+
+            // run to the end, looking for duplicates
+            while (runner != null) {
+                if (current.data == runner.data) {
+                    prev.next = runner.next;
+                }
+                prev = runner;
+                runner = runner.next;
+            }
+
+            current = current.next;
+        }
+    }
 }
