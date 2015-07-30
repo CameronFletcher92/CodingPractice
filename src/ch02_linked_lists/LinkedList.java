@@ -5,7 +5,7 @@ public class LinkedList<E> {
         E data;
         Node next;
 
-        Node(E data) {
+        public Node(E data) {
             this.data = data;
         }
 
@@ -16,6 +16,20 @@ public class LinkedList<E> {
     }
 
     Node head;
+
+    public void prepend(E data) {
+        Node start = new Node(data);
+
+        // first prepend
+        if (head == null) {
+            head = start;
+            return;
+        }
+
+        // other prepends
+        start.next = head;
+        head = start;
+    }
 
     public void append(E data) {
         Node end = new Node(data);
