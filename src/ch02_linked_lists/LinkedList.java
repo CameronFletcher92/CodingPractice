@@ -1,7 +1,7 @@
 package ch02_linked_lists;
 
 public class LinkedList<E> {
-    public class Node {
+    public static class Node<E> {
         E data;
         Node next;
 

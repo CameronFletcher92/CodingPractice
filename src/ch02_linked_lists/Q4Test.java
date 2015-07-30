@@ -11,11 +11,11 @@ public class Q4Test extends TestCase {
         list.append(2);
 
         list = Q4.partition(list, 3);
-        assertTrue(list.head.data < 3);
-        assertTrue(list.head.next.data < 3);
-        assertTrue(list.head.next.next.data >= 3);
-        assertTrue(list.head.next.next.next.data >= 3);
-        assertTrue(list.head.next.next.next.next.data >= 3);
+        assertTrue((int)list.head.data < 3);
+        assertTrue((int)list.head.next.data < 3);
+        assertTrue((int)list.head.next.next.data >= 3);
+        assertTrue((int)list.head.next.next.next.data >= 3);
+        assertTrue((int)list.head.next.next.next.next.data >= 3);
     }
 
 }

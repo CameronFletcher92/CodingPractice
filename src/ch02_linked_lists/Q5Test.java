@@ -14,9 +14,9 @@ public class Q5Test extends TestCase {
         list2.append(2);
 
         LinkedList<Integer> result = Q5.reverseSum(list1, list2);
-        assertEquals((int)result.head.data, 2);
-        assertEquals((int)result.head.next.data, 1);
-        assertEquals((int)result.head.next.next.data, 9);
+        assertEquals(2, (int) result.head.data);
+        assertEquals(1, (int) result.head.next.data);
+        assertEquals(9, (int) result.head.next.next.data);
     }
 
     public void testSum() throws Exception {
@@ -31,9 +31,9 @@ public class Q5Test extends TestCase {
         list2.append(5);
 
         LinkedList<Integer> result = Q5.sum(list1, list2);
-        assertEquals((int)result.head.data, 9);
-        assertEquals((int)result.head.next.data, 1);
-        assertEquals((int)result.head.next.next.data, 2);
+        assertEquals(9, (int)result.head.data);
+        assertEquals(1, (int)result.head.next.data);
+        assertEquals(2, (int)result.head.next.next.data);
 
 
         list1 = new LinkedList<>();
@@ -48,9 +48,9 @@ public class Q5Test extends TestCase {
         list2.append(0);
 
         result = Q5.sum(list1, list2);
-        assertEquals((int)result.head.data, 1);
-        assertEquals((int)result.head.next.data, 2);
-        assertEquals((int)result.head.next.next.data, 3);
-        assertEquals((int)result.head.next.next.next.data, 4);
+        assertEquals(1, (int) result.head.data);
+        assertEquals(2, (int) result.head.next.data);
+        assertEquals(3, (int) result.head.next.next.data);
+        assertEquals(4, (int) result.head.next.next.next.data);
     }
 }
