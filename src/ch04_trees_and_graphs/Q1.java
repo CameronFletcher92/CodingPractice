@@ -1,31 +1,30 @@
 package ch04_trees_and_graphs;
 
 public class Q1 {
-    private static int getHeight(TreeNode branch) {
-        // base case
-        if (branch == null) {
+    private static int checkHeight(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
-        // get the tallest branch, and add 1 to it (for itself)
-        int tallestSubBranch = Math.max(getHeight(branch.leftChild), getHeight(branch.rightChild));
-        return tallestSubBranch + 1;
+        // get the subtree heights
+        int leftHeight = checkHeight(root.leftChild);
+        int rightHeight = checkHeight(root.rightChild);
+
+        // if either subtree is unbalanced, this subtree is unbalanced
+        if (leftHeight == -1 || rightHeight == -1) {
+            return -1;
+        }
+
+        // check if this subtree is unbalanced, otherwise return the subtree's height
+        int heightDiff = Math.abs(leftHeight - rightHeight);
+        if (heightDiff > 1) {
+            return -1;
+        } else {
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
     }
 
-
     public static boolean isBalanced(TreeNode root) {
-        // base case
-        if (root == null) {
-            return true;
-        }
-
-        // get height diff
-        int heightDiff = Math.abs(getHeight(root.leftChild) - getHeight(root.rightChild));
-        if (heightDiff > 1) {
-            return false;
-        } else {
-            // recurse through all subtrees
-            return isBalanced(root.leftChild) || isBalanced(root.rightChild);
-        }
+        return checkHeight(root) != -1;
     }
 }
