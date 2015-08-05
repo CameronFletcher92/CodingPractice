@@ -6,19 +6,11 @@ public class Q5 {
             return true;
         }
 
-
-        // get the values
+        // get the root value
         Integer rootVal = root.data;
-        Integer leftVal = root.leftChild != null ? root.leftChild.data : null;
-        Integer rightVal = root.rightChild != null ? root.rightChild.data : null;
 
         // check the root is in the right range
         if ((min != null && rootVal < min) || (max != null && rootVal >= max)) {
-            return false;
-        }
-
-        // binary search tree check
-        if ((leftVal != null && leftVal > rootVal) || (rightVal != null && rightVal <= rootVal)) {
             return false;
         } else {
             return isBinarySearchTree(root.leftChild, min, rootVal) && isBinarySearchTree(root.rightChild, rootVal, max);
