@@ -15,10 +15,16 @@ public class Q1Test extends TestCase {
         a2 = new int[]{1, 1, 1};
 
         merged = Q1.mergeInto(a1, 7, a2);
-        for (int i = 0; i < 10; i++) {
-            assertEquals(i + 1, merged[i]);
-        }
-
+        assertEquals(1, merged[0]);
+        assertEquals(1, merged[1]);
+        assertEquals(1, merged[2]);
+        assertEquals(1, merged[3]);
+        assertEquals(3, merged[4]);
+        assertEquals(5, merged[5]);
+        assertEquals(7, merged[6]);
+        assertEquals(10, merged[7]);
+        assertEquals(11, merged[8]);
+        assertEquals(12, merged[9]);
     }
 
 }
