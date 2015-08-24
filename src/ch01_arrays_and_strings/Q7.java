@@ -1,45 +1,34 @@
 package ch01_arrays_and_strings;
 
 public class Q7 {
-    private static void nullifyRow(int[][] matrix, int row) {
-        for (int i = 0; i < matrix[row].length; i++) {
-            matrix[row][i] = 0;
+    private static void clearRow(int[][] m, int row) {
+        for (int i = 0; i < m[row].length; i++) {
+            m[row][i] = 0;
         }
     }
 
-    private static void nullifyCol(int[][] matrix, int col) {
-        for (int i = 0; i < matrix.length; i++) {
-            matrix[i][col] = 0;
+    private static void clearColAbove(int[][] m, int row, int col) {
+        if (row == 0) return;
+        for (int i = row - 1; i >= 0; i--) {
+            m[i][col] = 0;
         }
     }
 
-    public static int[][] setZeros(int[][] matrix) {
-        boolean[] rows = new boolean[matrix.length];
-        boolean[] cols = new boolean[matrix[0].length];
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] == 0) {
-                    rows[i] = true;
-                    cols[j] = true;
+    public static int[][] setZeros(int[][] m) {
+        boolean[] clearedCols = new boolean[m[0].length];
+        for (int row = 0; row < m.length; row++) {
+            for (int col = 0; col < m[row].length; col++) {
+                if (clearedCols[col]) {
+                    m[row][col] = 0;
+                } else if (m[row][col] == 0) {
+                    clearRow(m, row);
+                    clearedCols[col] = true;
+                    clearColAbove(m, row, col);
+                    break;
                 }
             }
         }
 
-        // nullify rows
-        for (int i = 0; i < rows.length; i++) {
-            if (rows[i]) {
-                nullifyRow(matrix, i);
-            }
-        }
-
-        // nullify columns
-        for (int j = 0; j < cols.length; j++) {
-            if (cols[j]) {
-                nullifyCol(matrix, j);
-            }
-        }
-
-        return matrix;
+        return m;
     }
 }
