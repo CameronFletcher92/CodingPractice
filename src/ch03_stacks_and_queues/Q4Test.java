@@ -20,6 +20,11 @@ public class Q4Test extends TestCase {
         for (int i = 0; i < numDisks; i++) {
             assertEquals(i, (int)towers[2].getDisks().pop());
         }
+
+
+        // second implementation
+        Q4.TowersOfHanoi toh = new Q4.TowersOfHanoi(3);
+        toh.solve();
     }
 
 }
