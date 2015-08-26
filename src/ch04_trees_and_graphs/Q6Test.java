@@ -35,7 +35,7 @@ public class Q6Test extends TestCase {
         assertEquals(t5, Q6.findNextNode(t4));
         assertEquals(t6, Q6.findNextNode(t5));
         assertEquals(t7, Q6.findNextNode(t6));
-        assertEquals(null, Q6.findNextNode(t7));
+        assertEquals(null, Q6.nextNode(t7));
     }
 
 }

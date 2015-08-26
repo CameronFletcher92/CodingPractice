@@ -1,6 +1,7 @@
 package ch04_trees_and_graphs;
 
 public class Q6 {
+    // ITERATIVE IMPLEMENTATION
     public static TreeNode findNextNode(TreeNode node) {
         TreeNode ret;
 
@@ -29,5 +30,30 @@ public class Q6 {
 
         // should never hit
         return null;
+    }
+
+    // RECURSIVE IMPLEMENTATION
+    public static TreeNode nextNode(TreeNode n) {
+        if (n.rightChild != null) {
+            return getLeftmostDescendant(n.rightChild);
+        } else if (n.parent != null) {
+            return getMatchingParent(n.parent, n.data);
+        } else {
+            return null;
+        }
+    }
+
+    private static TreeNode getLeftmostDescendant(TreeNode n) {
+        return n.leftChild == null ? n : getLeftmostDescendant(n.leftChild);
+    }
+
+    private static TreeNode getMatchingParent(TreeNode n, int min) {
+        if (n.data >= min) {
+            return n;
+        } else if (n.parent != null) {
+            return getMatchingParent(n.parent, min);
+        } else {
+            return null;
+        }
     }
 }

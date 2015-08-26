@@ -1,8 +1,43 @@
 package ch09_recursion_and_dynamic_programming;
 
+import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Q2 {
+    private static void getWays(Point pos, ArrayList<Point> path, ArrayList<ArrayList<Point>> paths) {
+        if (pos.x < 0 || pos.y < 0) {
+            return;
+        }
+
+        path.add(pos);
+
+        if (pos.x == 0 && pos.y == 0) {
+            paths.add((ArrayList<Point>)path.clone());
+        }
+
+        // search up
+        getWays(new Point(pos.x, pos.y - 1), path, paths);
+
+        // search left
+        getWays(new Point(pos.x - 1, pos.y), path, paths);
+
+        // remove this point from the path
+        path.remove(path.size() - 1);
+    }
+
+    public static ArrayList<ArrayList<Point>> getWays(Point dest) {
+        ArrayList<Point> path = new ArrayList<>();
+        ArrayList<ArrayList<Point>> paths = new ArrayList<>();
+
+        getWays(dest, path, paths);
+        return paths;
+    }
+
+
+
+
+    // OLD IMPLEMENTATION
     public static class Location {
         public int x;
         public int y;

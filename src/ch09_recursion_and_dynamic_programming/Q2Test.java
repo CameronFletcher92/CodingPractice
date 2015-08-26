@@ -1,6 +1,9 @@
 package ch09_recursion_and_dynamic_programming;
 import junit.framework.TestCase;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 public class Q2Test extends TestCase {
     private int factorial(int n) {
         int fact = 1; // this  will be the result
@@ -27,5 +30,9 @@ public class Q2Test extends TestCase {
         end = new Q2.Location(5, 7);
         int expected = (factorial(end.x + end.y)) / (factorial(end.x) * factorial(end.y));
         assertEquals(expected, Q2.countWays(start, end));
+
+        // second implementation (returns paths)
+        ArrayList<ArrayList<Point>> paths = Q2.getWays(new Point(5, 7));
+        assertEquals(expected, paths.size());
     }
 }
