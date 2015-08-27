@@ -9,6 +9,35 @@ public class Q6 {
         return start + "()" + end;
     }
 
+    // NEW IMPLEMENTATION
+    public static HashSet<String> getValidParens2(int n) {
+        HashSet<String> parens = new HashSet<>();
+
+        // base case: n == 0
+        if (n == 0) {
+            parens = new HashSet<>();
+            parens.add("");
+            return parens;
+        }
+
+        // general case
+        // get set of parens for n - 1
+        HashSet<String> oldParens = getValidParens(n - 1);
+
+        for (String str : oldParens) {
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '(') {
+                    parens.add(insertParensAfter(str, i));
+                }
+            }
+            // add the preceding
+            parens.add(insertParensAfter(str, -1));
+        }
+
+        return parens;
+    }
+
+    // OLD IMPLEMENTATION
     public static HashSet<String> getValidParens(int pairs) {
         HashSet<String> parens = new HashSet<>();
 
