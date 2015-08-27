@@ -11,5 +11,6 @@ public class Q4Test extends TestCase {
         nums.add(3);
 
         assertEquals(8, Q4.getAllSets(nums).size());
+        assertEquals(8, Q4.setOfSets(nums).size());
     }
 }
