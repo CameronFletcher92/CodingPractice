@@ -1,34 +1,40 @@
 package ch09_recursion_and_dynamic_programming;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Q5 {
-    private static String insertCharAt(String str, int index, char c) {
-        String start = str.substring(0, index);
-        String end = str.substring(index);
-        return start + c + end;
-    }
+    public static LinkedList<String> getPerms(String str) {
+        LinkedList<String> perms;
 
-    public static ArrayList<String> getPermutations(String original) {
-        ArrayList<String> perms = new ArrayList<>();
-
-        // base case, str length is 0
-        if (original.length() == 0) {
-            perms.add("");
+        // base case
+        if (str.length() == 0) {
+            perms = new LinkedList<>();
+            perms.add(str);
             return perms;
         }
 
-        char first = original.charAt(0);
-        String remainder = original.substring(1);
+        // general case
+        // take the first letter
+        char first = str.charAt(0);
+        String rest = str.substring(1);
 
-        ArrayList<String> remainderPerms = getPermutations(remainder);
-        for (String perm : remainderPerms) {
-            for (int i = 0; i <= perm.length(); i++) {
-                String newPerm = insertCharAt(perm, i, first);
+        // get perms of smaller string
+        perms = getPerms(rest);
+
+        // add first at every possible position in every perm
+        int size = perms.size();
+        for (int i = 0; i < size; i++) {
+            String perm = perms.removeFirst();
+            for (int j = 0; j <= perm.length(); j++) {
+                String newPerm = insertCharAt(perm, first, j);
                 perms.add(newPerm);
             }
         }
 
         return perms;
+    }
+
+    private static String insertCharAt(String str, char c, int index) {
+        return str.substring(0, index) + c + str.substring(index);
     }
 }
