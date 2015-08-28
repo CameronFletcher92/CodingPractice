@@ -11,8 +11,8 @@ public class Q7Test extends TestCase {
         Q7.Person p4 = new Q7.Person(4, 4);
         Q7.Person p5 = new Q7.Person(5, 5);
         Q7.Person p6 = new Q7.Person(6, 6);
-        Q7.Person p6b = new Q7.Person(6, 8);
-        Q7.Person p6c = new Q7.Person(8, 6);
+        Q7.Person p6b = new Q7.Person(5, 8);
+        Q7.Person p6c = new Q7.Person(8, 5);
         Q7.Person p10 = new Q7.Person(10, 10);
 
         ArrayList<Q7.Person> people = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Q7Test extends TestCase {
         people.add(p2);
         people.add(p1);
 
-        ArrayList<Q7.Person> result = Q7.getLongestTower(people);
+        ArrayList<Q7.Person> result = Q7.getBiggestStack(people);
         assertEquals(7, result.size());
     }
 }
