@@ -3,7 +3,7 @@ import junit.framework.TestCase;
 
 public class Q3Test extends TestCase {
 
-    public void testReverse() throws Exception {
+    public void testIsPermutation() throws Exception {
         assertTrue(Q3.isPermutation("abcdef", "fdecab"));
         assertTrue(Q3.isPermutation("race car", "car race"));
         assertTrue(Q3.isPermutation("122333444455555", "132434525453545"));
