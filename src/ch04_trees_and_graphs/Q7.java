@@ -1,35 +1,68 @@
 package ch04_trees_and_graphs;
 
 public class Q7 {
-    private static boolean isDescendant(TreeNode root, TreeNode t) {
-        if (root == null)
-            return false;
+    public static class Result {
+        public int numFound;
+        public TreeNode ancestor;
 
-        if (root == t) {
-            return true;
+        public Result(int numFound, TreeNode ancestor) {
+            this.numFound = numFound;
+            this.ancestor = ancestor;
         }
-
-        return isDescendant(root.leftChild, t) || isDescendant(root.rightChild, t);
     }
 
-    private static TreeNode findCommonAncestorHelper(TreeNode root, TreeNode t1, TreeNode t2) {
-        boolean isT1OnLeft = isDescendant(root.leftChild, t1);
-        boolean isT2OnLeft = isDescendant(root.leftChild, t2);
+    public static TreeNode findCommonAncestor(TreeNode root, TreeNode a, TreeNode b) {
+        Result res = findAncestor(root, a, b);
+        return res.ancestor;
+    }
 
-        if (isT1OnLeft && isT2OnLeft) {
-            return findCommonAncestorHelper(root.leftChild, t1, t2);
-        } else if (!isT1OnLeft && !isT2OnLeft) {
-            return findCommonAncestorHelper(root.rightChild, t1, t2);
+
+    private static Result findAncestor(TreeNode root, TreeNode a, TreeNode b) {
+        // base case, none found
+        if (root == null) {
+            return new Result(0, null);
+        }
+
+        // check root
+        int numFound = 0;
+        if (root == a) {
+            numFound++;
+        }
+        if (root == b) {
+            numFound++;
+        }
+
+        // if both nodes are root, return it
+        if (numFound == 2) {
+            return new Result(2, root);
+        }
+
+        // recurse down the left side
+        Result leftResult = findAncestor(root.leftChild, a, b);
+
+        // we found the common ancestor (2 were in this subtree)
+        if (leftResult.numFound == 2) {
+            return leftResult;
         } else {
-            return root;
+            numFound += leftResult.numFound;
+        }
+
+        // recurse down the right side
+        Result rightResult = findAncestor(root.rightChild, a, b);
+
+        // we found the common ancestor (2 were in this subtree)
+        if (rightResult.numFound == 2) {
+            return rightResult;
+        } else {
+            numFound += rightResult.numFound;
+        }
+
+        // if we found 2 nodes, and it hasn't been handled, root is common ancestor
+        if (numFound == 2) {
+            return new Result(2, root);
+        } else {
+            return new Result(numFound, null);
         }
     }
 
-    public static TreeNode findCommonAncestor(TreeNode root, TreeNode t1, TreeNode t2) {
-        if (!isDescendant(root, t1) || !isDescendant(root, t2)) {
-            return null;
-        } else {
-            return findCommonAncestorHelper(root, t1, t2);
-        }
-    }
 }

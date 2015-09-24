@@ -3,6 +3,7 @@ package ch04_trees_and_graphs;
 import java.util.ArrayList;
 
 public class Q9 {
+    /*
     private static ArrayList<Integer> generatePath(int[] path, int start, int end) {
         ArrayList<Integer> newPath = new ArrayList<>();
         for (int i = start; i <= end; i++) {
@@ -50,6 +51,54 @@ public class Q9 {
         findSum(root, sum, path, 0, matchingPaths);
 
         return matchingPaths;
+    }
+    */
+
+    private static ArrayList<TreeNode> generatePath(ArrayList<TreeNode> fullPath, int startIndex) {
+        // add all nodes from i to end
+        ArrayList<TreeNode> newPath = new ArrayList<>();
+
+        for (int i = startIndex; i < fullPath.size(); i++) {
+            newPath.add(fullPath.get(i));
+        }
+
+        return newPath;
+    }
+
+    private static void getPaths(TreeNode n, int target, ArrayList<TreeNode> path, ArrayList<ArrayList<TreeNode>> paths) {
+        // base case
+        if (n == null) {
+            return;
+        }
+
+        // add n to path
+        path.add(n);
+
+        // see if this node ended a sum to target
+        int counter = 0;
+        for (int i = path.size() - 1; i >= 0; i--) {
+            counter += path.get(i).data;
+            if (counter == target) {
+                paths.add(generatePath(path, i));
+            }
+        }
+
+        // recurse
+        getPaths(n.leftChild, target, path, paths);
+        getPaths(n.rightChild, target, path, paths);
+
+        // remove self from path (so levels above won't be affected
+        path.remove(path.size() - 1);
+    }
+
+    public static ArrayList<ArrayList<TreeNode>> findSum(TreeNode root, int target) {
+        if (root == null) return null;
+
+        ArrayList<ArrayList<TreeNode>> paths = new ArrayList<>();
+        ArrayList<TreeNode> path = new ArrayList<>();
+
+        getPaths(root, target, path, paths);
+        return paths;
     }
 
 }

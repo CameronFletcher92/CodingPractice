@@ -18,10 +18,22 @@ public class Q4 {
             }
         }
 
+        private int getIndex(Stack<Integer> stack) {
+            if (stack == s1) {
+                return 1;
+            } else if (stack == s2) {
+                return 2;
+            } else {
+                return 3;
+            }
+        }
+
         private void moveTower(Stack<Integer> source, Stack<Integer> dest, Stack<Integer> buf, int disks) {
             // base case: 1 disk
             if (disks == 1) {
-                dest.push(source.pop());
+                int disk = source.pop();
+                System.out.println("Move disk " + disk + " from " + getIndex(source) + " to " + getIndex(dest));
+                dest.push(disk);
                 return;
             }
 

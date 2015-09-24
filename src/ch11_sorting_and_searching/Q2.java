@@ -30,6 +30,7 @@ public class Q2 {
 
         }
 
+        start -= 1;
         return start;
     }
 
@@ -37,13 +38,13 @@ public class Q2 {
         int index = partition(chars, start, end);
 
         // sort left
-        if (start < index - 1) {
-            quickSortChars(chars, start, index - 1);
+        if (start < index) {
+            quickSortChars(chars, start, index);
         }
 
         // sort right
-        if (index < end) {
-            quickSortChars(chars, index, end);
+        if (index + 1 < end) {
+            quickSortChars(chars, index + 1, end);
         }
     }
 

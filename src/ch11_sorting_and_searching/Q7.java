@@ -42,7 +42,7 @@ public class Q7 {
 
         // base case, no one can stack on top
         if (maxStack == null) {
-            maxStack = new ArrayList<Person>();
+            maxStack = new ArrayList<>();
         }
 
         // add bottom to the stack

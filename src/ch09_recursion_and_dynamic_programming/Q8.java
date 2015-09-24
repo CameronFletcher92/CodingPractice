@@ -3,6 +3,38 @@ package ch09_recursion_and_dynamic_programming;
 import java.util.HashMap;
 
 public class Q8 {
+    // new implementation (no hashmap)
+    private static int countWays(int amount, int[] denoms, int denomIndex) {
+        // base case, we are at the last denom
+        if (denomIndex == denoms.length - 1) {
+            return 1;
+        }
+
+        // general case, try increasing amounts of selected denom
+        int denomCount = 0;
+        int remaining = amount;
+
+        int ways = 0;
+        while (remaining >= 0) {
+            ways += countWays(remaining, denoms, denomIndex + 1);
+            denomCount++;
+            remaining = amount - (denomCount * denoms[denomIndex]);
+        }
+
+        // add ways into hashmap
+        return ways;
+    }
+
+    public static int countWays(int amount) {
+        int[] denoms = new int[]{25, 10, 5, 1};
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        return countWays(amount, denoms, 0);
+    }
+
+
+
+    // old implementation
     public static int makeChange(int n) {
         int[] denoms = {25, 10, 5, 1};
         HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();

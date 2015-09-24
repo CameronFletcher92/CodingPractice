@@ -11,6 +11,8 @@ public class Q7Test extends TestCase {
         TreeNode t6 = new TreeNode(6);
         TreeNode t7 = new TreeNode(7);
 
+        TreeNode notIn = new TreeNode(20);
+
         t4.leftChild = t2;
         t4.rightChild = t6;
 
@@ -24,5 +26,6 @@ public class Q7Test extends TestCase {
         assertEquals(t2, Q7.findCommonAncestor(t4, t1, t3));
         assertEquals(t4, Q7.findCommonAncestor(t4, t5, t1));
         assertEquals(t4, Q7.findCommonAncestor(t4, t2, t7));
+        assertEquals(null, Q7.findCommonAncestor(t4, notIn, t7));
     }
 }

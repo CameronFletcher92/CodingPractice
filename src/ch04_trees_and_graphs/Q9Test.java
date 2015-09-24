@@ -28,7 +28,8 @@ public class Q9Test extends TestCase {
         t8.rightChild = t9;
         t9.rightChild = t10;
 
-        ArrayList<ArrayList<Integer>> paths = Q9.findSum(t1, 5);
+        //ArrayList<ArrayList<Integer>> paths = Q9.findSum(t1, 5);
+        ArrayList<ArrayList<TreeNode>> paths = Q9.findSum(t1, 5);
         assertEquals(5, paths.size());
 
     }

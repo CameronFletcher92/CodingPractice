@@ -3,6 +3,7 @@ import junit.framework.TestCase;
 
 public class Q4Test extends TestCase {
     public void testTowersOfHanoi() throws Exception {
+        /*
         int numDisks = 3;
 
         Q4.Tower[] towers = new Q4.Tower[3];
@@ -20,6 +21,7 @@ public class Q4Test extends TestCase {
         for (int i = 0; i < numDisks; i++) {
             assertEquals(i, (int)towers[2].getDisks().pop());
         }
+        */
 
 
         // second implementation
